@@ -1,1 +1,5 @@
 script/__pycache__/
+/.vs
+/build
+/out/build/x64-Debug
+/publish/x64
