@@ -1,0 +1,29 @@
+{
+  "cSpell.words": [
+    "buildsystems",
+    "msvc",
+    "termcolor",
+    "vcpkg",
+    "wfox",
+    "WINITERFOXMANAGER",
+    "WINTERFOXMANAGER",
+    "Yufox"
+  ],
+  "files.associations": {
+    "*.css": "css",
+    "*.vue": "vue",
+    "chrono": "cpp",
+    "compare": "cpp",
+    "filesystem": "cpp",
+    "locale": "cpp",
+    "system_error": "cpp",
+    "type_traits": "cpp",
+    "xlocale": "cpp",
+    "xlocinfo": "cpp",
+    "xlocnum": "cpp",
+    "xloctime": "cpp",
+    "xmemory": "cpp",
+    "xutility": "cpp",
+    "*.rh": "cpp"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "winter-yufox-framework",
+  "version": "1.0.0",
+  "dependencies": [
+    "fmt",
+    "cli11",
+    "spdlog",
+    "indicators",
+    "date",
+    "tomlplusplus"
+  ],
+  "supports": "windows | linux | macos"
+}

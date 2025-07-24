@@ -1,0 +1,9 @@
+﻿script/__pycache__/
+/.vs
+/build
+/out
+/publish
+/target
+wfox.exe
+wfox
+/vcpkg_installed
