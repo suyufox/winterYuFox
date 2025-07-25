@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(winterFoxManager
+project(winterFoxCLI
   VERSION 0.0.1
-  DESCRIPTION "winterFox Manager"
+  DESCRIPTION "winterFox CLI"
   LANGUAGES CXX
 )
 
@@ -11,13 +11,25 @@ find_package(CLI11 CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(indicators CONFIG REQUIRED)
 find_package(date CONFIG REQUIRED)
-find_package(tomlplusplus CONFIG REQUIRED)
+find_package(mysvac-jsonlib CONFIG REQUIRED)
 
 add_executable(wfox
   src/main.cpp
-  
+  src/command.cpp
+  src/commands/build.cpp
+  src/commands/dev.cpp
+  src/commands/bundle.cpp
+  src/commands/android.cpp
+  src/commands/ios.cpp
+  src/commands/icon.cpp
   include/wfox/main.h
-  
+  include/wfox/command.h
+  include/wfox/commands/android.h
+  include/wfox/commands/build.h
+  include/wfox/commands/bundle.h
+  include/wfox/commands/dev.h
+  include/wfox/commands/icon.h
+  include/wfox/commands/ios.h
 )
 
 target_link_libraries(wfox
@@ -28,7 +40,7 @@ target_link_libraries(wfox
     indicators::indicators
     date::date
     date::date-tz
-    tomlplusplus::tomlplusplus
+    mysvac::jsonlib
 )
 
 target_include_directories(wfox PUBLIC

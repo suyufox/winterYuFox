@@ -24,6 +24,8 @@
     "xloctime": "cpp",
     "xmemory": "cpp",
     "xutility": "cpp",
-    "*.rh": "cpp"
+    "*.rh": "cpp",
+    "xiosbase": "cpp",
+    "xstring": "cpp"
   }
 }

@@ -1,8 +1,10 @@
+
+
 /*** 
  * @Author: suyufox shenming26@outlook.com
  * @Date: 2025-07-23 17:56:57 +0800
  * @LastEditors: suyufox shenming26@outlook.com
- * @LastEditTime: 2025-07-24 12:48:17 +0800
+ * @LastEditTime: 2025-07-25 16:27:27 +0800
  * @FilePath: \\winterYufox\\tools\\wfox\\src\\main.cpp
  * @Description: 
  * @
@@ -10,48 +12,89 @@
  */
 
 #include <wfox/main.h>
-
+#include <wfox/command.h>
+#include <wfox/commands/build.h>
 
 using fmt::print;
 using std::string;
+namespace fs = std::filesystem;
 
 int main(int argc, char** argv) {
-    CLI::App app;
+  spdlog::info("Initializing the scaffolding... | 初始化脚手架中...");
+  fmt::println("-----------------------------------------------------");
+  Application app{ string{"wfox"} };
 
-    app.name(string{ "wfox" });
-    app.description(string{ "winter fox manager" });
+  app.set_description(string{ "winter fox cli | winter fox 脚手架工具" });
 
-    auto build_command = app.add_subcommand("build",  "Build Project | 构建项目");
-    auto run_command   = app.add_subcommand("run",    "Run Project | 运行项目");
-    auto new_command   = app.add_subcommand("new",    "Create Project | 创建项目");
+  {
+    bool build_release{ false };
+    app.add_subcommand("build", "Build Project | 构建项目",
+      [&]() {
+        spdlog::info("build");
+        using build::build_option;
+        using build::Build;
+        build_option option {
+          .release = build_release,
+        };
+        Build build { option };
+      },
+      [&](CLI::App* cmd) {
+        cmd->add_flag("--release", build_release, "Release build | 发布模式构建");
+      });
+  }
 
-    app.add_flag("-v,--verbose", "详细输出 | Detailed output");
+  {
+    app.add_subcommand("bundle", "Bundle Project | 打包项目",
+      [&]() {
 
-    try {
-        app.parse(argc, argv);
+      },
+      [&](CLI::App*) {
 
-        if (app.get_subcommands().empty()) {
-            return app.exit(CLI::CallForHelp());
-        }
-    }
-    catch (const CLI::ParseError& e) {
-        return app.exit(e);
-    }
-    // 2. 使用spdlog记录
-    //spdlog::info("启动服务，端口: {}", port);
+      });
+  }
 
-    // 3. 显示进度条
-    // indicators::ProgressBar bar{
-    //     indicators::option::BarWidth{50},
-    //     indicators::option::Start{"["},
-    //     indicators::option::End{"]"},
-    //     indicators::option::ShowPercentage{true}
-    // };
+  {
+    app.add_subcommand("dev", "Run Project | 运行项目",
+      [&]() {
 
-    // for (int i = 0; i <= 100; ++i) {
-    //     bar.set_progress(i);
-    //     std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    // }
+      },
+      [&](CLI::App*) {
 
-    return 0;
+      });
+  }
+
+  {
+    string project_name;
+    app.add_subcommand("new", "Create Project | 创建项目",
+      [&]() {
+
+      },
+      [&](CLI::App* cmd) {
+        cmd->add_option("name", project_name, "Project name")->required();
+      });
+  }
+
+  {
+    string project_name;
+    bool is_workspace{ false };
+    bool is_bin{ true };
+    app.add_subcommand("init", "Init Project | 初始化项目",
+      [&]() {
+
+      },
+      [&](CLI::App* cmd) {
+        cmd->add_option("name", project_name, "Project Name");
+
+        auto workspace_flag = cmd->add_flag("-w,--workspace", is_workspace, "Create a workspace?");
+        auto bin_flag = cmd->add_flag("--bin", is_bin, "Create a binary project (default)");
+        auto lib_flag = cmd->add_flag("--lib", [&](size_t count) {is_bin = (count == 0);}, "Create a library project");
+
+        bin_flag->excludes(lib_flag);
+        lib_flag->excludes(bin_flag);
+        workspace_flag->excludes(lib_flag);
+        workspace_flag->excludes(bin_flag);
+      });
+  }
+
+  return app.run(argc, argv);
 }
