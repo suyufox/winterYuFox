@@ -1,14 +1,9 @@
 {
+  "$schema": "https//raw.githubusercontent.com/suyufox/winterYufox/tools/wfox/schema/wfox.schema.json",
   "build": {
 
   },
   "app": {
-
-  },
-  "bundle": {
-
-  },
-  "plugins": {
 
   }
 }

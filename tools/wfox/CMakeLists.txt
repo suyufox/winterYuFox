@@ -22,6 +22,7 @@ add_executable(wfox
   src/commands/android.cpp
   src/commands/ios.cpp
   src/commands/icon.cpp
+  src/commands/init.cpp
   include/wfox/main.h
   include/wfox/command.h
   include/wfox/commands/android.h
@@ -30,7 +31,8 @@ add_executable(wfox
   include/wfox/commands/dev.h
   include/wfox/commands/icon.h
   include/wfox/commands/ios.h
-)
+  include/wfox/commands/init.h
+ )
 
 target_link_libraries(wfox
   PRIVATE

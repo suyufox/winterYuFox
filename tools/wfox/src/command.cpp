@@ -10,7 +10,7 @@ void Application::set_description(const std::string& description) {
 
 int Application::run(int argc, char** argv) {
 	bool verbose{ false };
-	app.add_flag("-v,--verbose", verbose, "详细输出 | Detailed output");
+	app.add_flag("-v,--verbose", verbose, "Detailed output | 详细输出");
 
 	try {
 		app.parse(argc, argv);

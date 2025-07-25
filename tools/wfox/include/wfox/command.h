@@ -26,12 +26,10 @@ public:
 	template <typename Callback>
 	CLI::App* add_subcommand(const std::string& name,
 		const std::string& description,
-		Callback&& callback,
-		std::function<void(CLI::App*)> setup = std::nullopt) {
+    std::function<void(CLI::App*)> setup,
+		Callback&& callback) {
 		auto* cmd = app.add_subcommand(name, description);
-		if (setup) {
-			setup(cmd);
-		}
+		setup(cmd);
 		cmd->callback(std::forward<Callback>(callback));
 		return cmd;
 	}

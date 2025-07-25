@@ -7,3 +7,4 @@
 #include <spdlog/spdlog.h>
 #include <fstream>
 #include <iostream>
+#include <stdlib.h>

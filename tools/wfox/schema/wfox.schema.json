@@ -1,6 +1,14 @@
 {
   "type": "object",
   "properties": {
+    "applicationName": {
+      "type": "string",
+      "description": "Application Name | 应用名称"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version | 版本号"
+    },
     "build": {
       "type": "object",
       "properties": {
@@ -10,19 +18,12 @@
     "app": {
       "type": "object",
       "properties": {
-
-      }
-    },
-    "bundle": {
-      "type": "object",
-      "properties": {
-
-      }
-    },
-    "plugins": {
-      "type": "object",
-      "properties": {
-
+        "binaryName": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        }
       }
     }
   }
