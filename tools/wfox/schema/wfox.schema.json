@@ -1,19 +1,28 @@
 {
   "type": "object",
   "properties": {
-    "first_name": { "type": "string" },
-    "last_name": { "type": "string" },
-    "birthday": {
-      "type": "string",
-      "format": "date"
-    },
-    "address": {
+    "build": {
       "type": "object",
       "properties": {
-        "street_address": { "type": "string" },
-        "city": { "type": "string" },
-        "state": { "type": "string" },
-        "country": { "type": "string" }
+
+      }
+    },
+    "app": {
+      "type": "object",
+      "properties": {
+
+      }
+    },
+    "bundle": {
+      "type": "object",
+      "properties": {
+
+      }
+    },
+    "plugins": {
+      "type": "object",
+      "properties": {
+
       }
     }
   }

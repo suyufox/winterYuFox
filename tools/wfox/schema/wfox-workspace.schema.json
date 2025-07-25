@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Project Name | 项目名称"
+    },
+    "workspace": {
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean"
+        },
+        "mainConfigFile": {
+          "type": "string" 
+        }
+      }
+    }
+  }
+}
